@@ -107,6 +107,7 @@
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 8px;
       padding: 14px 0;
     }
     .brand {
@@ -278,6 +279,109 @@
       margin: 0; color: var(--fg-1); line-height: 1.6;
     }
 
+    .mission-statement {
+      max-width: 72ch;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .mission-statement h3 {
+      margin: 0 0 16px;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.25;
+    }
+    .mission-statement p {
+      color: var(--fg-1);
+      font-size: clamp(16px, 2vw, 18px);
+      line-height: 1.7;
+    }
+    .doe-ref {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    .doe-ref:hover { color: var(--accent-2); }
+
+    .team-lead {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 28px;
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(123,92,255,.35);
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      box-shadow: var(--shadow);
+    }
+    .avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-weight: 800;
+      letter-spacing: .04em;
+      background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%),
+                  radial-gradient(circle at 70% 70%, var(--accent-2), transparent 60%);
+      color: var(--fg-0);
+    }
+    .team-lead h3 { margin: 0 0 6px; font-size: 24px; }
+    .team-lead .role { margin: 0 0 8px; color: var(--accent); font-weight: 700; }
+    .team-lead p { margin: 0; color: var(--fg-1); }
+    .team-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .person-card {
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--card-stroke);
+      background: var(--card);
+    }
+    .person-card h3 { margin: 0 0 4px; font-size: 17px; }
+    .person-card .role { margin: 0 0 6px; color: var(--accent); font-size: 13px; font-weight: 700; }
+    .person-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .featured-paper {
+      padding: 32px;
+      margin-bottom: 28px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(77,227,195,.35);
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      box-shadow: var(--shadow);
+    }
+    .featured-label {
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 0 0 12px;
+    }
+    .featured-paper h3 { margin: 0 0 12px; font-size: 22px; line-height: 1.3; }
+    .featured-paper cite { display: block; font-style: normal; color: var(--fg-1); margin-bottom: 12px; }
+    .featured-paper p { color: var(--fg-1); margin: 0 0 16px; }
+    .featured-paper a {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .featured-paper a:hover { color: var(--accent-2); }
+    .featured-paper .sep { color: var(--muted); }
+    .pub-list { list-style: none; margin: 0; padding: 0; }
+    .pub-list li {
+      padding: 18px 0;
+      border-top: 1px solid var(--card-stroke);
+      color: var(--fg-1);
+    }
+    .pub-list a { color: var(--accent); font-weight: 600; }
+    .pub-list a:hover { color: var(--accent-2); }
+
     /* ====== Footer ====== */
     footer {
       padding: 60px 0 80px; color: var(--muted); text-align: center;
@@ -293,6 +397,7 @@
       .links-grid { grid-template-columns: 1fr; }
       .hero { padding: clamp(60px, 10vw, 120px) 0 60px; }
       section { padding: 60px 0; }
+      .team-lead { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -307,6 +412,9 @@
         <span>ROVI</span>
       </div>
       <div>
+        <a href="#mission">Mission</a>
+        <a href="#team">Team</a>
+        <a href="#publications">Publications</a>
         <a href="#about">About</a>
         <a href="#links">Resources</a>
         <button id="theme-toggle" class="toggle" title="Toggle theme" aria-label="Toggle theme">
@@ -320,12 +428,145 @@
   <header class="hero container">
     <div class="hero-logo">
       <img src="assets/ROVI_logo_v7.web.png" alt="ROVI Logo" class="hero-logo-img">
+    </div>
     <p class="lead">
       DOE's Rapid Operational Validation Initiative (ROVI) is intended to address critical gaps in data needs to evaluate the long-term performance of energy storage technologies and to accelerate the pace for technology development. The six lab ROVI team (ANL-INL-NLR-ORNL-PNNL-Sandia) is primarily focused on accelerating the time from lab to market for long duration energy storage (LDES) systems by employing data-driven tools to predict their operational lifetimes. ROVI will develop a suite of adaptive AI/ML modeling tools based on data from laboratory testing and model simulations that will be validated with data from field deployed systems supported by DOE's Office of Electricity (OE) and Office of Clean Energy Demonstrations (OCED).
     </p>
   </header>
 
   <main class="container">
+    <section id="mission">
+      <h2 class="section-title">Mission</h2>
+      <div class="mission-statement">
+        <h3>Predict 15+ years of investment-grade storage performance from less than one year of data.</h3>
+        <p>
+          The Office of Electricity’s Rapid Operational Validation Initiative (ROVI) exists to
+          shorten the path from laboratory energy-storage technologies to commercial deployment.
+          ROVI builds data standards, accelerated testing methods, and AI/ML tools that turn
+          limited laboratory, field, and simulated performance data into lifetime forecasts for
+          long-duration storage — validated against DOE Office of Electricity and Office of Clean
+          Energy Demonstrations deployments.
+        </p>
+        <a class="doe-ref" href="https://www.energy.gov/oe/rapid-operational-validation-initiative-rovi" target="_blank" rel="noopener">
+          DOE program page (reference) →
+        </a>
+      </div>
+    </section>
+
+    <section id="team">
+      <h2 class="section-title">Team</h2>
+      <article class="team-lead">
+        <div class="avatar" aria-hidden="true">SB</div>
+        <div>
+          <h3>Susan J. Babinec</h3>
+          <p class="role">Program strategy, Argonne ACCESS</p>
+          <p>Argonne Collaborative Center for Energy Storage Science. ROVI engagement lead for investment-grade validation, the battery data genome, and multi-laboratory coordination.</p>
+        </div>
+      </article>
+      <div class="team-grid">
+        <article class="person-card">
+          <h3>Vinod Siberry</h3>
+          <p class="role">Technology manager</p>
+          <p>U.S. Department of Energy, Office of Electricity</p>
+        </article>
+        <article class="person-card">
+          <h3>Vincent Sprenkle</h3>
+          <p class="role">Program leadership</p>
+          <p>Pacific Northwest National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3>Noah H. Paulson</h3>
+          <p class="role">AI/ML for lithium-ion</p>
+          <p>Argonne National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3>Logan T. Ward</h3>
+          <p class="role">Data infrastructure</p>
+          <p>Argonne National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3>Joseph J. Kubal</h3>
+          <p class="role">Electrochemical modeling</p>
+          <p>Argonne National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3>Yuliya Preger</h3>
+          <p class="role">Data requirements</p>
+          <p>Sandia National Laboratories</p>
+        </article>
+        <article class="person-card">
+          <h3>Srikanth Allu</h3>
+          <p class="role">Data infrastructure</p>
+          <p>Oak Ridge National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3>Jie Bao</h3>
+          <p class="role">AI/ML for flow batteries</p>
+          <p>Pacific Northwest National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3>Kevin L. Gering</h3>
+          <p class="role">Accelerated testing</p>
+          <p>Idaho National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3>Kandler Smith</h3>
+          <p class="role">Lifetime and use-case modeling</p>
+          <p>National Renewable Energy Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3>Eric J. Dufek</h3>
+          <p class="role">Validation and deployment testing</p>
+          <p>Idaho National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3>Wenquan Lu</h3>
+          <p class="role">Cell fabrication and testing</p>
+          <p>CAMP Facility, Argonne National Laboratory</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2 class="section-title">Publications</h2>
+      <article class="featured-paper">
+        <p class="featured-label">Featured paper</p>
+        <h3>Multivariate prognosis of battery advanced state of health via transformers</h3>
+        <cite>Noah H. Paulson, Joseph J. Kubal, Susan J. Babinec. <em>Cell Reports Physical Science</em> 5, 101928 (2024).</cite>
+        <p>
+          Simultaneous prognosis of 28 battery health descriptors across six lithium-ion cathode
+          chemistries, including an unprecedented mean absolute error of 19 cycles for end-of-life
+          on a fast-charging LFP dataset.
+        </p>
+        <a href="https://www.cell.com/cell-reports-physical-science/pdfExtended/S2666-3864(24)00177-2" target="_blank" rel="noopener">Read the paper (PDF) →</a>
+        <span class="sep"> · </span>
+        <a href="https://doi.org/10.1016/j.xcrp.2024.101928" target="_blank" rel="noopener">doi:10.1016/j.xcrp.2024.101928</a>
+      </article>
+      <ul class="pub-list">
+        <li>
+          Noah H. Paulson, Joseph Kubal, Logan Ward, Saurabh Saxena, Wenquan Lu, Susan J. Babinec.
+          Feature engineering for machine learning enabled early prediction of battery lifetime.
+          <em>Journal of Power Sources</em> 527, 231127 (2022).
+          <a href="https://doi.org/10.1016/j.jpowsour.2022.231127" target="_blank" rel="noopener">doi:10.1016/j.jpowsour.2022.231127</a>
+        </li>
+        <li>
+          Logan Ward, Susan Babinec, Eric J. Dufek, David A. Howey, Venkatasubramanian Viswanathan, et al.
+          Principles of the battery data genome.
+          <em>Joule</em> 6, 2253–2271 (2022).
+          <a href="https://doi.org/10.1016/j.joule.2022.08.008" target="_blank" rel="noopener">doi:10.1016/j.joule.2022.08.008</a>
+        </li>
+        <li>
+          Logan Ward, Joseph Kubal, Susan J. Babinec, Wenquan Lu, Allison Dunlop, Steve Trask, et al.
+          Dataset of NMC battery tests from CAMP, 2023 release.
+          <a href="https://doi.org/10.18126/p0xr-uqfp" target="_blank" rel="noopener">doi:10.18126/p0xr-uqfp</a>
+        </li>
+        <li>
+          Battery Data Toolkit (battdat).
+          <a href="https://rovi-org.github.io/battery-data-toolkit/" target="_blank" rel="noopener">Documentation</a>
+        </li>
+      </ul>
+    </section>
+
     <section id="about">
       <h2 class="section-title">DataHub Development</h2>
       <div class="content-grid">
@@ -392,8 +633,10 @@
     <div class="container">
       <div>© <span id="year"></span> Rapid Operational Validation Initiative. Department of Energy.</div>
       <div class="links">
-        <a href="#about">About</a>
-        <a href="#links">Resources</a>
+        <a href="#mission">Mission</a>
+        <a href="#team">Team</a>
+        <a href="#publications">Publications</a>
+        <a href="https://www.energy.gov/oe/rapid-operational-validation-initiative-rovi" target="_blank" rel="noopener">DOE ROVI</a>
       </div>
     </div>
   </footer>
