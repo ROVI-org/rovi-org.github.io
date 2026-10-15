@@ -305,32 +305,6 @@
     }
     .doe-ref:hover { color: var(--accent-2); }
 
-    .team-lead {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 24px;
-      align-items: start;
-      margin-bottom: 28px;
-      padding: 28px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(123,92,255,.35);
-      background: var(--card);
-      backdrop-filter: var(--blur);
-      box-shadow: var(--shadow);
-    }
-    .avatar {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      display: grid; place-items: center;
-      font-weight: 800;
-      letter-spacing: .04em;
-      background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%),
-                  radial-gradient(circle at 70% 70%, var(--accent-2), transparent 60%);
-      color: var(--fg-0);
-    }
-    .team-lead h3 { margin: 0 0 6px; font-size: 24px; }
-    .team-lead .role { margin: 0 0 8px; color: var(--accent); font-weight: 700; }
-    .team-lead p { margin: 0; color: var(--fg-1); }
     .team-grid {
       display: grid;
       gap: 16px;
@@ -343,6 +317,8 @@
       background: var(--card);
     }
     .person-card h3 { margin: 0 0 4px; font-size: 17px; }
+    .person-card h3 a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    .person-card h3 a:hover { color: var(--accent); }
     .person-card .role { margin: 0 0 6px; color: var(--accent); font-size: 13px; font-weight: 700; }
     .person-card p { margin: 0; color: var(--muted); font-size: 14px; }
 
@@ -397,7 +373,7 @@
       .links-grid { grid-template-columns: 1fr; }
       .hero { padding: clamp(60px, 10vw, 120px) 0 60px; }
       section { padding: 60px 0; }
-      .team-lead { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -455,29 +431,66 @@
 
     <section id="team">
       <h2 class="section-title">Team</h2>
-      <article class="team-lead">
-        <div class="avatar" aria-hidden="true">SB</div>
-        <div>
-          <h3>Susan J. Babinec</h3>
-          <p class="role">Program strategy, Argonne ACCESS</p>
-          <p>Argonne Collaborative Center for Energy Storage Science. ROVI engagement lead for investment-grade validation, the battery data genome, and multi-laboratory coordination.</p>
-        </div>
-      </article>
       <div class="team-grid">
+        <article class="person-card">
+          <h3><a href="https://www.anl.gov/profile/susan-jean-babinec" target="_blank" rel="noopener">Susan J. Babinec</a></h3>
+          <p class="role">Program strategy, Argonne ACCESS</p>
+          <p>Argonne National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3><a href="https://www.anl.gov/profile/eliu-a-huerta" target="_blank" rel="noopener">Eliu A. Huerta</a></h3>
+          <p class="role">Translational AI</p>
+          <p>Argonne National Laboratory</p>
+        </article>
         <article class="person-card">
           <h3>Vinod Siberry</h3>
           <p class="role">Technology manager</p>
           <p>U.S. Department of Energy, Office of Electricity</p>
         </article>
         <article class="person-card">
-          <h3>Vincent Sprenkle</h3>
+          <h3><a href="https://www.pnnl.gov/people/vincent-sprenkle" target="_blank" rel="noopener">Vincent Sprenkle</a></h3>
           <p class="role">Program leadership</p>
           <p>Pacific Northwest National Laboratory</p>
         </article>
         <article class="person-card">
-          <h3>Noah H. Paulson</h3>
-          <p class="role">AI/ML for lithium-ion</p>
+          <h3><a href="https://www.anl.gov/profile/joseph-j-kubal" target="_blank" rel="noopener">Joseph J. Kubal</a></h3>
+          <p class="role">Electrochemical modeling</p>
           <p>Argonne National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3><a href="https://energy.sandia.gov/staff/yuliya-preger/" target="_blank" rel="noopener">Yuliya Preger</a></h3>
+          <p class="role">Data requirements</p>
+          <p>Sandia National Laboratories</p>
+        </article>
+        <article class="person-card">
+          <h3><a href="https://www.ornl.gov/staff-profile/srikanth-allu" target="_blank" rel="noopener">Srikanth Allu</a></h3>
+          <p class="role">Data infrastructure</p>
+          <p>Oak Ridge National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3><a href="https://www.pnnl.gov/people/jie-bao" target="_blank" rel="noopener">Jie Bao</a></h3>
+          <p class="role">AI/ML for flow batteries</p>
+          <p>Pacific Northwest National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3><a href="https://inl.elsevierpure.com/en/persons/kevin-gering/" target="_blank" rel="noopener">Kevin L. Gering</a></h3>
+          <p class="role">Accelerated testing</p>
+          <p>Idaho National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3><a href="https://research-hub.nrel.gov/en/persons/kandler-smith/" target="_blank" rel="noopener">Kandler Smith</a></h3>
+          <p class="role">Lifetime and use-case modeling</p>
+          <p>National Renewable Energy Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3><a href="https://inl.elsevierpure.com/en/persons/eric-dufek/" target="_blank" rel="noopener">Eric J. Dufek</a></h3>
+          <p class="role">Validation and deployment testing</p>
+          <p>Idaho National Laboratory</p>
+        </article>
+        <article class="person-card">
+          <h3><a href="https://www.anl.gov/profile/wenquan-lu" target="_blank" rel="noopener">Wenquan Lu</a></h3>
+          <p class="role">Cell fabrication and testing</p>
+          <p>CAMP Facility, Argonne National Laboratory</p>
         </article>
         <article class="person-card">
           <h3>Logan T. Ward</h3>
@@ -485,44 +498,9 @@
           <p>Argonne National Laboratory</p>
         </article>
         <article class="person-card">
-          <h3>Joseph J. Kubal</h3>
-          <p class="role">Electrochemical modeling</p>
+          <h3>Noah H. Paulson</h3>
+          <p class="role">AI/ML for lithium-ion</p>
           <p>Argonne National Laboratory</p>
-        </article>
-        <article class="person-card">
-          <h3>Yuliya Preger</h3>
-          <p class="role">Data requirements</p>
-          <p>Sandia National Laboratories</p>
-        </article>
-        <article class="person-card">
-          <h3>Srikanth Allu</h3>
-          <p class="role">Data infrastructure</p>
-          <p>Oak Ridge National Laboratory</p>
-        </article>
-        <article class="person-card">
-          <h3>Jie Bao</h3>
-          <p class="role">AI/ML for flow batteries</p>
-          <p>Pacific Northwest National Laboratory</p>
-        </article>
-        <article class="person-card">
-          <h3>Kevin L. Gering</h3>
-          <p class="role">Accelerated testing</p>
-          <p>Idaho National Laboratory</p>
-        </article>
-        <article class="person-card">
-          <h3>Kandler Smith</h3>
-          <p class="role">Lifetime and use-case modeling</p>
-          <p>National Renewable Energy Laboratory</p>
-        </article>
-        <article class="person-card">
-          <h3>Eric J. Dufek</h3>
-          <p class="role">Validation and deployment testing</p>
-          <p>Idaho National Laboratory</p>
-        </article>
-        <article class="person-card">
-          <h3>Wenquan Lu</h3>
-          <p class="role">Cell fabrication and testing</p>
-          <p>CAMP Facility, Argonne National Laboratory</p>
         </article>
       </div>
     </section>
