@@ -262,18 +262,6 @@
     }
     .link-card a:hover { color: var(--accent-2); }
 
-    /* ====== Infinite Scroll Content ====== */
-    .infinite-content {
-      padding: 60px 0;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .infinite-content.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     .content-block {
       background: var(--card);
       border: 1px solid var(--card-stroke);
@@ -379,9 +367,25 @@
       </div>
     </section>
 
-    <div id="infinite-content">
-      <!-- Infinite scroll content will be dynamically added here -->
-    </div>
+    <section id="capabilities">
+      <h2 class="section-title">Capabilities</h2>
+      <article class="content-block">
+        <h3>Machine Learning Models</h3>
+        <p>Advanced AI/ML models for predicting battery degradation and performance across various operating conditions and environmental factors.</p>
+      </article>
+      <article class="content-block">
+        <h3>Data Validation Framework</h3>
+        <p>Comprehensive validation protocols ensuring data quality and consistency across multiple laboratory and field deployment sites.</p>
+      </article>
+      <article class="content-block">
+        <h3>Real-time Analytics</h3>
+        <p>Live monitoring and analysis capabilities for continuous assessment of energy storage system performance and health.</p>
+      </article>
+      <article class="content-block">
+        <h3>Collaborative Research</h3>
+        <p>Multi-laboratory collaboration framework enabling shared data access and coordinated research efforts across DOE facilities.</p>
+      </article>
+    </section>
   </main>
 
   <footer>
@@ -428,8 +432,7 @@
       });
     }, observerOptions);
 
-    // Observe all sections and infinite content
-    document.querySelectorAll('section, .infinite-content').forEach(el => {
+    document.querySelectorAll('section').forEach(el => {
       observer.observe(el);
     });
 
@@ -452,82 +455,6 @@
       gridObserver.observe(resourcesGrid);
     }
 
-    // Infinite scroll functionality
-    const infiniteContainer = document.getElementById('infinite-content');
-    const contentBlocks = [
-      {
-        title: "Machine Learning Models",
-        content: "Advanced AI/ML models for predicting battery degradation and performance across various operating conditions and environmental factors."
-      },
-      {
-        title: "Data Validation Framework",
-        content: "Comprehensive validation protocols ensuring data quality and consistency across multiple laboratory and field deployment sites."
-      },
-      {
-        title: "Real-time Analytics",
-        content: "Live monitoring and analysis capabilities for continuous assessment of energy storage system performance and health."
-      },
-      {
-        title: "Collaborative Research",
-        content: "Multi-laboratory collaboration framework enabling shared data access and coordinated research efforts across DOE facilities."
-      }
-    ];
-
-    let currentBlockIndex = 0;
-    let isLoading = false;
-
-    function addContentBlock() {
-      if (isLoading) return;
-      isLoading = true;
-
-      const block = contentBlocks[currentBlockIndex % contentBlocks.length];
-      const contentDiv = document.createElement('div');
-      contentDiv.className = 'infinite-content';
-      contentDiv.innerHTML = `
-        <div class="content-block">
-          <h3>${block.title}</h3>
-          <p>${block.content}</p>
-        </div>
-      `;
-
-      infiniteContainer.appendChild(contentDiv);
-      observer.observe(contentDiv);
-      
-      currentBlockIndex++;
-      isLoading = false;
-    }
-
-    // Add initial content blocks
-    for (let i = 0; i < 3; i++) {
-      addContentBlock();
-    }
-
-    // Infinite scroll trigger
-    const scrollObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !isLoading) {
-          addContentBlock();
-        }
-      });
-    }, { threshold: 0.1 });
-
-    // Observe the last content block for infinite scroll
-    function observeLastBlock() {
-      const lastBlock = infiniteContainer.lastElementChild;
-      if (lastBlock) {
-        scrollObserver.observe(lastBlock);
-      }
-    }
-
-    // Initial observation
-    setTimeout(observeLastBlock, 100);
-
-    // Re-observe after adding new blocks
-    const originalAddContentBlock = addContentBlock;
-    addContentBlock = function() {
-      originalAddContentBlock();
-      setTimeout(observeLastBlock, 100);
-    };
   </script>
 </body>
 </html>
