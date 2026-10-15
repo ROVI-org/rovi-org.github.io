@@ -1,44 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Rapid Operational Validation Initiative</title>
   <meta name="description" content="DOE's Rapid Operational Validation Initiative (ROVI) - Accelerating energy storage technology development through data-driven tools and AI/ML modeling." />
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+    })();
+  </script>
   <style>
     /* ====== Theme & Tokens ====== */
-    :root {
+    :root,
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg-0: #f7f7fb;
+      --bg-1: #ffffff;
+      --fg-0: #12131a;
+      --fg-1: #2b2d3a;
+      --muted: #6a6c7e;
+      --accent: #4de3c3;
+      --accent-2: #7b5cff;
+      --danger: #ff445d;
+      --card: rgba(0,0,0,0.04);
+      --card-stroke: rgba(0,0,0,0.08);
+      --blur: blur(10px);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.75);
+      --speed: 22s;
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
       --bg-0: #0a0b10;
       --bg-1: #0f111a;
       --fg-0: #e6e6ef;
       --fg-1: #b8b8c7;
       --muted: #7a7a90;
-      --accent: #4de3c3;
-      --accent-2: #7b5cff;
-      --danger: #ff445d;
       --card: rgba(255,255,255,0.06);
       --card-stroke: rgba(255,255,255,0.08);
-      --blur: blur(10px);
-      --radius: 18px;
       --shadow: 0 10px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
-      --speed: 22s;
     }
-
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg-0: #f7f7fb;
-        --bg-1: #ffffff;
-        --fg-0: #12131a;
-        --fg-1: #2b2d3a;
-        --muted: #6a6c7e;
-        --card: rgba(0,0,0,0.04);
-        --card-stroke: rgba(0,0,0,0.08);
-        --shadow: 0 10px 30px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.75);
-      }
-    }
-
-    :root[data-theme="light"] { color-scheme: light; }
-    :root[data-theme="dark"]  { color-scheme: dark; }
 
     /* ====== Base ====== */
     * { box-sizing: border-box; }
@@ -101,14 +105,14 @@
     /* ====== Topbar ====== */
     .nav {
       position: sticky; top: 0; backdrop-filter: blur(8px);
-      background: linear-gradient(to bottom, rgba(0,0,0,.15), transparent);
+      background: color-mix(in srgb, var(--bg-0) 86%, transparent);
       border-bottom: 1px solid var(--card-stroke);
       z-index: 10;
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 8px;
-      padding: 14px 0;
+      gap: 8px;
+      padding: 12px 0 8px;
     }
     .brand {
       font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
@@ -125,12 +129,35 @@
                   radial-gradient(circle at 70% 70%, var(--accent-2), transparent 60%);
       box-shadow: 0 0 20px rgba(77,227,195,.7), 0 0 35px rgba(123,92,255,.5);
     }
-    .nav-links {
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end;
-      gap: 6px 0;
+    .tablist {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      gap: 2px;
+      margin: 0 -8px;
+      padding: 0 8px;
+      border-top: 1px solid var(--card-stroke);
     }
-    .nav a { color: var(--fg-1); margin-left: 14px; font-weight: 600; }
-    .nav a:hover { color: var(--fg-0); }
+    .tab {
+      appearance: none;
+      background: none;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      color: var(--fg-1);
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 12px 12px;
+      white-space: nowrap;
+    }
+    .tab:hover { color: var(--fg-0); }
+    .tab[aria-selected="true"] {
+      color: var(--fg-0);
+      border-bottom-color: var(--accent);
+    }
+    .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
     .toggle {
       display: inline-flex; align-items: center; gap: .6rem;
@@ -141,7 +168,7 @@
 
     /* ====== Hero ====== */
     .hero {
-      padding: clamp(80px, 12vw, 160px) 0 80px;
+      padding: 28px 0 36px;
       text-align: center;
     }
     .glitch {
@@ -173,7 +200,7 @@
       margin-bottom: 32px;
     }
     .hero-logo-img {
-      height: 500px; width: auto; filter: brightness(1.1) contrast(1.1);
+      height: clamp(220px, 36vw, 380px); width: auto; filter: brightness(1.1) contrast(1.1);
       transition: filter .3s ease, transform .3s ease;
     }
     .hero-logo-img:hover { 
@@ -186,22 +213,16 @@
       line-height: 1.7;
     }
 
-    /* ====== Sections ====== */
-    section { 
-      padding: 80px 0; 
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* ====== Sections / tabs ====== */
+    main.container { padding-bottom: 48px; }
+    .panel { padding: 28px 0 64px; }
+    .panel[hidden] { display: none !important; }
     
     .section-title {
       text-transform: uppercase; letter-spacing: .2em; font-weight: 800;
       color: var(--muted); margin: 0 0 32px; font-size: 14px;
     }
+    .panel .section-title:not(:first-of-type) { margin-top: 48px; }
 
     .content-grid {
       display: grid; gap: 32px;
@@ -228,13 +249,6 @@
     .links-grid {
       display: grid; gap: 24px;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s cubic-bezier(.77,0,.175,1), transform 1s cubic-bezier(.77,0,.175,1);
-    }
-    .links-grid.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     
     .link-card {
@@ -245,13 +259,7 @@
       backdrop-filter: var(--blur);
       box-shadow: var(--shadow);
       padding: 24px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(.77,0,.175,1);
-    }
-    .link-card.visible {
-      opacity: 1;
-      transform: translateY(0);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     }
     .link-card:hover {
       transform: translateY(-2px);
@@ -571,8 +579,8 @@
     @media (max-width: 768px) {
       .content-grid { grid-template-columns: 1fr; gap: 24px; }
       .links-grid { grid-template-columns: 1fr; }
-      .hero { padding: clamp(60px, 10vw, 120px) 0 60px; }
-      section { padding: 60px 0; }
+      .hero { padding: 16px 0 24px; }
+      .panel { padding: 16px 0 48px; }
       .team-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -582,40 +590,41 @@
   <div class="grain"></div>
 
   <nav class="nav">
-    <div class="container nav-inner">
-      <div class="brand">
-        <img src="assets/ROVI_logo_v7.web.png" alt="ROVI Logo" class="logo">
-        <span>ROVI</span>
-      </div>
-      <div class="nav-links">
-        <a href="#mission">Mission</a>
-        <a href="#partners">Partners</a>
-        <a href="#team">Team</a>
-        <a href="#publications">Publications</a>
-        <a href="#software">Software</a>
-        <a href="#presentations">Presentations</a>
-        <a href="#industry">Industry</a>
-        <a href="#about">About</a>
-        <a href="#links">Resources</a>
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#mission" data-tab-link="mission" aria-label="ROVI home">
+          <img src="assets/ROVI_logo_v7.web.png" alt="ROVI Logo" class="logo">
+          <span>ROVI</span>
+        </a>
         <button id="theme-toggle" class="toggle" title="Toggle theme" aria-label="Toggle theme">
           <span>Theme</span>
           <span aria-hidden>🌓</span>
         </button>
       </div>
+      <div class="tablist" role="tablist" aria-label="Site sections">
+        <button class="tab" role="tab" id="tab-mission" aria-controls="mission" aria-selected="true" tabindex="0">Mission</button>
+        <button class="tab" role="tab" id="tab-partners" aria-controls="partners" aria-selected="false" tabindex="-1">Partners</button>
+        <button class="tab" role="tab" id="tab-team" aria-controls="team" aria-selected="false" tabindex="-1">Team</button>
+        <button class="tab" role="tab" id="tab-publications" aria-controls="publications" aria-selected="false" tabindex="-1">Publications</button>
+        <button class="tab" role="tab" id="tab-software" aria-controls="software" aria-selected="false" tabindex="-1">Software</button>
+        <button class="tab" role="tab" id="tab-presentations" aria-controls="presentations" aria-selected="false" tabindex="-1">Presentations</button>
+        <button class="tab" role="tab" id="tab-industry" aria-controls="industry" aria-selected="false" tabindex="-1">Industry</button>
+        <button class="tab" role="tab" id="tab-about" aria-controls="about" aria-selected="false" tabindex="-1">About</button>
+        <button class="tab" role="tab" id="tab-links" aria-controls="links" aria-selected="false" tabindex="-1">Resources</button>
+      </div>
     </div>
   </nav>
 
-  <header class="hero container">
-    <div class="hero-logo">
-      <img src="assets/ROVI_logo_v7.web.png" alt="ROVI Logo" class="hero-logo-img">
-    </div>
-    <p class="lead">
-      DOE's Rapid Operational Validation Initiative (ROVI) is intended to address critical gaps in data needs to evaluate the long-term performance of energy storage technologies and to accelerate the pace for technology development. The six lab ROVI team (ANL-INL-NLR-ORNL-PNNL-Sandia) is primarily focused on accelerating the time from lab to market for long duration energy storage (LDES) systems by employing data-driven tools to predict their operational lifetimes. ROVI will develop a suite of adaptive AI/ML modeling tools based on data from laboratory testing and model simulations that will be validated with data from field deployed systems supported by DOE's Office of Electricity (OE) and Office of Clean Energy Demonstrations (OCED).
-    </p>
-  </header>
-
   <main class="container">
-    <section id="mission">
+    <section class="panel" id="mission" role="tabpanel" aria-labelledby="tab-mission" tabindex="0">
+      <header class="hero">
+        <div class="hero-logo">
+          <img src="assets/ROVI_logo_v7.web.png" alt="ROVI Logo" class="hero-logo-img">
+        </div>
+        <p class="lead">
+          DOE's Rapid Operational Validation Initiative (ROVI) is intended to address critical gaps in data needs to evaluate the long-term performance of energy storage technologies and to accelerate the pace for technology development. The six lab ROVI team (ANL-INL-NLR-ORNL-PNNL-Sandia) is primarily focused on accelerating the time from lab to market for long duration energy storage (LDES) systems by employing data-driven tools to predict their operational lifetimes. ROVI will develop a suite of adaptive AI/ML modeling tools based on data from laboratory testing and model simulations that will be validated with data from field deployed systems supported by DOE's Office of Electricity (OE) and Office of Clean Energy Demonstrations (OCED).
+        </p>
+      </header>
       <h2 class="section-title">Mission</h2>
       <div class="mission-statement">
         <h3>Greatly reduce the time required for emerging energy storage technologies to go from lab to market.</h3>
@@ -639,7 +648,7 @@
       </div>
     </section>
 
-    <section id="partners">
+    <section class="panel" id="partners" role="tabpanel" aria-labelledby="tab-partners" tabindex="0" hidden>
       <h2 class="section-title">Participating laboratories</h2>
       <div class="partner-logos">
         <a class="partner-logo" href="https://www.anl.gov/" target="_blank" rel="noopener" aria-label="Argonne National Laboratory">
@@ -663,7 +672,7 @@
       </div>
     </section>
 
-    <section id="team">
+    <section class="panel" id="team" role="tabpanel" aria-labelledby="tab-team" tabindex="0" hidden>
       <h2 class="section-title">Team</h2>
       <p class="section-lede">ROVI researchers and program leads across the Department of Energy and its national laboratories. Names link to individual profile pages where available.</p>
 
@@ -878,7 +887,7 @@
       </div>
     </section>
 
-    <section id="publications">
+    <section class="panel" id="publications" role="tabpanel" aria-labelledby="tab-publications" tabindex="0" hidden>
       <h2 class="section-title">Publications</h2>
       <article class="featured-paper">
         <p class="featured-label">Featured paper</p>
@@ -961,7 +970,7 @@
       </ul>
     </section>
 
-    <section id="software">
+    <section class="panel" id="software" role="tabpanel" aria-labelledby="tab-software" tabindex="0" hidden>
       <h2 class="section-title">Software</h2>
       <p class="section-lede">
         ROVI develops open-source tools for battery data handling, state-of-health estimation,
@@ -1025,7 +1034,7 @@
       </div>
     </section>
 
-    <section id="presentations">
+    <section class="panel" id="presentations" role="tabpanel" aria-labelledby="tab-presentations" tabindex="0" hidden>
       <h2 class="section-title">Presentations</h2>
       <p class="section-lede">Talks, webinars, and briefings by the ROVI team.</p>
       <ol class="timeline">
@@ -1057,7 +1066,7 @@
       </ol>
     </section>
 
-    <section id="industry">
+    <section class="panel" id="industry" role="tabpanel" aria-labelledby="tab-industry" tabindex="0" hidden>
       <h2 class="section-title">Industry collaborations</h2>
       <p class="section-lede">
         ROVI works with technology developers, utilities, and industry groups to shape data
@@ -1130,7 +1139,7 @@
       </p>
     </section>
 
-    <section id="about">
+    <section class="panel" id="about" role="tabpanel" aria-labelledby="tab-about" tabindex="0" hidden>
       <h2 class="section-title">DataHub Development</h2>
       <div class="content-grid">
         <div class="content-text">
@@ -1140,9 +1149,26 @@
           Data Architecture Visualization
         </div>
       </div>
+      <h2 class="section-title">Capabilities</h2>
+      <article class="content-block">
+        <h3>Machine Learning Models</h3>
+        <p>Advanced AI/ML models for predicting battery degradation and performance across various operating conditions and environmental factors.</p>
+      </article>
+      <article class="content-block">
+        <h3>Data Validation Framework</h3>
+        <p>Comprehensive validation protocols ensuring data quality and consistency across multiple laboratory and field deployment sites.</p>
+      </article>
+      <article class="content-block">
+        <h3>Real-time Analytics</h3>
+        <p>Live monitoring and analysis capabilities for continuous assessment of energy storage system performance and health.</p>
+      </article>
+      <article class="content-block">
+        <h3>Collaborative Research</h3>
+        <p>Multi-laboratory collaboration framework enabling shared data access and coordinated research efforts across DOE facilities.</p>
+      </article>
     </section>
 
-    <section id="links">
+    <section class="panel" id="links" role="tabpanel" aria-labelledby="tab-links" tabindex="0" hidden>
       <h2 class="section-title">Resources & Tools</h2>
       <div class="links-grid" id="resources-tools">
         <article class="link-card">
@@ -1170,39 +1196,21 @@
         </article>
       </div>
     </section>
-
-    <section id="capabilities">
-      <h2 class="section-title">Capabilities</h2>
-      <article class="content-block">
-        <h3>Machine Learning Models</h3>
-        <p>Advanced AI/ML models for predicting battery degradation and performance across various operating conditions and environmental factors.</p>
-      </article>
-      <article class="content-block">
-        <h3>Data Validation Framework</h3>
-        <p>Comprehensive validation protocols ensuring data quality and consistency across multiple laboratory and field deployment sites.</p>
-      </article>
-      <article class="content-block">
-        <h3>Real-time Analytics</h3>
-        <p>Live monitoring and analysis capabilities for continuous assessment of energy storage system performance and health.</p>
-      </article>
-      <article class="content-block">
-        <h3>Collaborative Research</h3>
-        <p>Multi-laboratory collaboration framework enabling shared data access and coordinated research efforts across DOE facilities.</p>
-      </article>
-    </section>
   </main>
 
   <footer>
     <div class="container">
       <div>© <span id="year"></span> Rapid Operational Validation Initiative. Department of Energy.</div>
       <div class="links">
-        <a href="#mission">Mission</a>
-        <a href="#partners">Partners</a>
-        <a href="#team">Team</a>
-        <a href="#publications">Publications</a>
-        <a href="#software">Software</a>
-        <a href="#presentations">Presentations</a>
-        <a href="#industry">Industry</a>
+        <a href="#mission" data-tab-link="mission">Mission</a>
+        <a href="#partners" data-tab-link="partners">Partners</a>
+        <a href="#team" data-tab-link="team">Team</a>
+        <a href="#publications" data-tab-link="publications">Publications</a>
+        <a href="#software" data-tab-link="software">Software</a>
+        <a href="#presentations" data-tab-link="presentations">Presentations</a>
+        <a href="#industry" data-tab-link="industry">Industry</a>
+        <a href="#about" data-tab-link="about">About</a>
+        <a href="#links" data-tab-link="links">Resources</a>
         <a href="https://github.com/ROVI-org" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.energy.gov/oe/rapid-operational-validation-initiative-rovi" target="_blank" rel="noopener">DOE ROVI</a>
       </div>
@@ -1210,62 +1218,67 @@
   </footer>
 
   <script>
-    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Theme toggle with persistence
     const root = document.documentElement;
     const btn  = document.getElementById('theme-toggle');
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
-
-    function currentTheme() {
-      return root.getAttribute('data-theme') ||
-        (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    }
+    if (root.getAttribute('data-theme') !== 'dark') root.setAttribute('data-theme', 'light');
     btn.addEventListener('click', () => {
-      const next = currentTheme() === 'dark' ? 'light' : 'dark';
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     });
 
-    // Scroll animations with IntersectionObserver
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+    const ids = tabs.map((t) => t.getAttribute('aria-controls'));
+    const tabbar = document.querySelector('.nav');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    function activate(id, opts) {
+      opts = opts || {};
+      if (ids.indexOf(id) === -1) id = 'mission';
+      tabs.forEach((t) => {
+        const on = t.getAttribute('aria-controls') === id;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        if (on && opts.focus) t.focus();
+        if (on) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
       });
-    }, observerOptions);
-
-    document.querySelectorAll('section').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Resources & Tools grid observer
-    const resourcesGrid = document.getElementById('resources-tools');
-    if (resourcesGrid) {
-      const gridObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            resourcesGrid.classList.add('visible');
-            // Animate each card in sequence
-            const cards = resourcesGrid.querySelectorAll('.link-card');
-            cards.forEach((card, i) => {
-              setTimeout(() => card.classList.add('visible'), i * 120);
-            });
-            gridObserver.disconnect();
-          }
-        });
-      }, { threshold: 0.2 });
-      gridObserver.observe(resourcesGrid);
+      if (opts.push && location.hash !== '#' + id) history.pushState(null, '', '#' + id);
+      if (opts.scroll) {
+        const top = tabbar.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo(0, Math.max(0, top));
+      }
     }
 
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => {
+        activate(tab.getAttribute('aria-controls'), { push: true, scroll: true });
+      });
+      tab.addEventListener('keydown', (e) => {
+        let n = null;
+        if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') n = 0;
+        else if (e.key === 'End') n = tabs.length - 1;
+        if (n !== null) {
+          e.preventDefault();
+          activate(tabs[n].getAttribute('aria-controls'), { push: true, focus: true });
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-tab-link]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const toTop = !!a.closest('.brand');
+        activate(a.getAttribute('data-tab-link'), { push: true, scroll: !toTop });
+        if (toTop) window.scrollTo(0, 0);
+      });
+    });
+
+    window.addEventListener('popstate', () => activate(location.hash.slice(1)));
+    activate(location.hash.slice(1));
   </script>
 </body>
 </html>
