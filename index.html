@@ -282,31 +282,24 @@
     .step:nth-of-type(3) .step-track::after { animation-delay: 2.4s; }
     @keyframes flow { 0% { left: -40%; } 33%, 100% { left: 100%; } }
 
-    /* ================= DataHub band ================= */
-    .band { background: var(--band); color: var(--band-ink); position: relative; overflow: hidden; }
-    .band .section-head p { color: var(--band-muted); }
-    .band .kicker { color: #ec82a8; }
-    .band::before {
-      content: ""; position: absolute; width: 700px; height: 700px; right: -200px; top: -260px;
-      background: radial-gradient(circle, rgba(93,147,189,.25), transparent 65%);
-    }
+    /* ================= DataHub ================= */
     .hub-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; position: relative; }
     .hub-diagram { width: 100%; height: auto; }
-    .hub-diagram .node rect { fill: rgba(255,255,255,.05); stroke: rgba(255,255,255,.16); }
-    .hub-diagram .node text { fill: #f2eef6; font-size: 13px; font-family: inherit; font-weight: 600; }
-    .hub-diagram .node .sub { fill: #a69db3; font-size: 11px; font-weight: 400; }
+    .hub-diagram .node rect { fill: var(--surface); stroke: var(--line-strong); }
+    .hub-diagram .node text { fill: var(--ink); font-size: 13px; font-family: inherit; font-weight: 600; }
+    .hub-diagram .node .sub { fill: var(--muted); font-size: 11px; font-weight: 400; }
     .hub-diagram .hub rect { fill: url(#hubGrad); stroke: none; }
     .hub-diagram .hub text { fill: #fff; font-weight: 800; font-size: 18px; }
     .hub-diagram .hub .sub { fill: rgba(255,255,255,.85); font-size: 12px; font-weight: 500; }
-    .hub-diagram .wire { fill: none; stroke: rgba(255,255,255,.18); stroke-width: 1.5; }
+    .hub-diagram .wire { fill: none; stroke: var(--line-strong); stroke-width: 1.5; }
     .hub-diagram .pulse { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 14 400; animation: pulse 3.2s linear infinite; }
     @keyframes pulse { from { stroke-dashoffset: 414; } to { stroke-dashoffset: 0; } }
     .caps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-    .caps li { padding: 20px 0; border-top: 1px solid rgba(255,255,255,.12); display: grid; grid-template-columns: 40px 1fr; gap: 16px; }
-    .caps li:last-child { border-bottom: 1px solid rgba(255,255,255,.12); }
-    .caps svg { width: 26px; height: 26px; color: #ec82a8; margin-top: 2px; }
+    .caps li { padding: 20px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 40px 1fr; gap: 16px; }
+    .caps li:last-child { border-bottom: 1px solid var(--line); }
+    .caps svg { width: 26px; height: 26px; color: var(--accent-text); margin-top: 2px; }
     .caps h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-    .caps p { margin: 0; color: var(--band-muted); font-size: 15.5px; }
+    .caps p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
 
     /* ================= Team ================= */
     .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
@@ -515,7 +508,6 @@
     .page-hero-crumb { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-bottom: 28px; }
     .page-hero-crumb a { color: var(--muted); }
     .page-hero-crumb svg { width: 14px; height: 14px; }
-    .band .page-hero-crumb, .band .page-hero-crumb a { color: var(--band-muted); }
 
     .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 72px; }
     .pager a {
@@ -530,8 +522,6 @@
     .pager .next { text-align: right; grid-column: 2; }
     .pager .next b { justify-content: flex-end; }
     .pager .prev b svg { transform: rotate(180deg); }
-    .band .pager a { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.14); color: var(--band-ink); }
-    .band .pager span { color: var(--band-muted); }
 
     /* ================= Page banner ================= */
     .page-banner {
@@ -905,7 +895,7 @@
     </section>
 
     <!-- ================= DATAHUB ================= -->
-    <section class="view section band" id="about" data-view="about" role="tabpanel" aria-labelledby="hub-title">
+    <section class="view section" id="about" data-view="about" role="tabpanel" aria-labelledby="hub-title">
       <div class="wrap">
         <div class="section-head reveal">
           <span class="kicker">DataHub development</span>
