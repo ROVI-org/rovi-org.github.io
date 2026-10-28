@@ -743,7 +743,7 @@
           </div>
           <dl class="facts">
             <div><dt>National laboratories</dt><dd data-count="6">6</dd></div>
-            <div><dt>Researchers</dt><dd data-count="24">24</dd></div>
+            <div><dt>Researchers</dt><dd data-count="35">35</dd></div>
             <div><dt>Open-source repositories</dt><dd data-count="10">10</dd></div>
           </dl>
         </div>
@@ -802,7 +802,7 @@
           </a>
           <a class="tile tile-team" href="#team">
             <span class="tile-label">Team</span>
-            <h3>24 researchers across DOE and six labs</h3>
+            <h3>35 researchers across DOE and six labs</h3>
             <div class="avatars" id="avatarStack" aria-hidden="true"></div>
             <span class="tile-go">Meet the team <svg><use href="#i-arrow"/></svg></span>
           </a>
@@ -1387,17 +1387,24 @@
   const TEAM = [
     { name: 'Susan J. Babinec', role: 'Program strategy, Argonne ACCESS', org: 'ANL', url: 'https://www.anl.gov/profile/susan-jean-babinec' },
     { name: 'Eliu A. Huerta', role: 'Translational AI', org: 'ANL', url: 'https://www.anl.gov/profile/eliu-a-huerta' },
-    { name: 'Joseph J. Kubal', role: 'Electrochemical modeling', org: 'ANL', url: 'https://www.anl.gov/profile/joseph-j-kubal' },
-    { name: 'Wenquan Lu', role: 'Cell fabrication and testing, CAMP Facility', org: 'ANL', url: 'https://www.anl.gov/profile/wenquan-lu' },
-    { name: 'Victor Venturi', role: 'State-of-health estimation', org: 'ANL' },
+    { name: 'Pranaya Krishna Terala', role: 'Battery modeling', org: 'ANL' },
+    { name: 'LeRoy Flores', role: 'Cell testing and characterization', org: 'ANL' },
+    { name: 'Brian J. Ingram', role: 'Materials characterization', org: 'ANL', url: 'https://www.anl.gov/profile/brian-j-ingram' },
+    { name: 'Vignesh Sampath', role: 'Data science and learning', org: 'ANL' },
+    { name: 'Xiaoli Yan', role: 'AI for materials', org: 'ANL' },
+    { name: 'Bella Yang', role: 'Multi-agent AI', org: 'ANL', url: 'https://chihhsuan-yang.github.io/' },
+    { name: 'Austin Yunker', role: 'Machine learning', org: 'ANL' },
     { name: 'Vinod Siberry', role: 'Technology manager', org: 'OE' },
+    { name: 'Kenneth Kort', role: 'Energy storage demonstrations', org: 'OE' },
     { name: 'Kevin L. Gering', role: 'Accelerated testing', org: 'INL', url: 'https://inl.elsevierpure.com/en/persons/kevin-gering/' },
     { name: 'Eric J. Dufek', role: 'Validation and deployment testing', org: 'INL', url: 'https://inl.elsevierpure.com/en/persons/eric-dufek/' },
+    { name: 'Pete Barnes', role: 'Battery testing', org: 'INL' },
+    { name: 'Guillermo Frausto', role: 'Energy storage analysis', org: 'INL' },
+    { name: 'Kaleb K. Houck', role: 'Data infrastructure', org: 'INL', url: 'https://inl.elsevierpure.com/en/persons/edward-houck/' },
+    { name: 'Bumjun Park', role: 'Battery testing', org: 'INL' },
     { name: 'Corey Randall', role: 'Equivalent circuit models', org: 'NLR', url: 'https://research-hub.nlr.gov/en/persons/corey-randall/' },
     { name: 'Paul Gasper', role: 'Battery lifetime and performance', org: 'NLR', url: 'https://research-hub.nlr.gov/en/persons/paul-gasper/' },
-    { name: 'Kandler Smith', role: 'Lifetime and use-case modeling', org: 'NLR', url: 'https://research-hub.nlr.gov/en/persons/kandler-smith/' },
     { name: 'Srikanth Allu', role: 'Data infrastructure', org: 'ORNL', url: 'https://www.ornl.gov/staff-profile/srikanth-allu' },
-    { name: 'Michael Starke', role: 'Project manager', org: 'ORNL', url: 'https://www.ornl.gov/staff/michael-r-starke/' },
     { name: 'Josh Grant', role: 'DataHub architect', org: 'ORNL', url: 'https://www.ornl.gov/staff/josh-n-grant/' },
     { name: 'Ramki Kannan', role: 'AI/ML expert', org: 'ORNL', url: 'https://www.ornl.gov/staff/ramakrishnan-ramki-kannan/' },
     { name: 'Doris Hung', role: 'Ageing modeling', org: 'ORNL', url: 'https://www.ornl.gov/staff/doris-hung/' },
@@ -1407,10 +1414,22 @@
     { name: 'Wei Wang', role: 'Energy storage leadership', org: 'PNNL', url: 'https://www.pnnl.gov/people/wei-wang' },
     { name: 'Jie Bao', role: 'AI/ML for flow batteries', org: 'PNNL', url: 'https://www.pnnl.gov/people/jie-bao' },
     { name: 'Yunxiang Chen', role: 'Flow battery modeling', org: 'PNNL', url: 'https://www.pnnl.gov/people/yunxiang-chen' },
+    { name: 'Alasdair Crawford', role: 'Energy storage analysis', org: 'PNNL', url: 'https://www.pnnl.gov/people/alasdair-crawford' },
+    { name: 'Emily G. Saldanha', role: 'Machine learning', org: 'PNNL', url: 'https://www.pnnl.gov/people/emily-saldanha-phd' },
+    { name: 'Nimat Shamim', role: 'Battery systems and grid integration', org: 'PNNL', url: 'https://www.pnnl.gov/people/nimat-shamim' },
+    { name: 'Vilayanur V. Viswanathan', role: 'Cost and performance analysis', org: 'PNNL', url: 'https://www.pnnl.gov/people/vilayanur-viswanathan' },
     { name: 'Yuliya Preger', role: 'Data requirements', org: 'SNL', url: 'https://energy.sandia.gov/staff/yuliya-preger/' },
     { name: 'Valerio De Angelis', role: 'Energy storage leadership', org: 'SNL' }
   ];
   const ALUMNI = [
+    { name: 'Wenquan Lu', role: 'Cell fabrication and testing, CAMP Facility', org: 'ANL', url: 'https://www.anl.gov/profile/wenquan-lu' },
+    { name: 'Victor Venturi', role: 'State-of-health estimation', org: 'ANL' },
+    { name: 'Kandler Smith', role: 'Lifetime and use-case modeling', org: 'NLR', url: 'https://research-hub.nlr.gov/en/persons/kandler-smith/' },
+    { name: 'Michael Starke', role: 'Project manager', org: 'ORNL', url: 'https://www.ornl.gov/staff/michael-r-starke/' },
+    { name: 'Guannan Tang', role: 'Data science', org: 'ANL' },
+    { name: 'Joseph J. Kubal', role: 'Electrochemical modeling', org: 'ANL', url: 'https://www.anl.gov/profile/joseph-j-kubal' },
+    { name: 'Mo Kamaludeen', role: 'Director, energy storage validation', org: 'OE', url: 'https://www.energy.gov/oe/person/mohamed-kamaludeen' },
+    { name: 'Rodney Feazell', role: 'Technical support specialist', org: 'OE' },
     { name: 'Logan T. Ward', role: 'Data infrastructure', org: 'ANL', url: 'https://www.anl.gov/profile/logan-ward' },
     { name: 'Noah H. Paulson', role: 'AI/ML for lithium-ion', org: 'ANL', url: 'https://www.anl.gov/profile/noah-paulson' }
   ];
