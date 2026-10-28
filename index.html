@@ -342,10 +342,7 @@
     .person { position: relative; }
     .person .role { margin: 2px 0 0; color: var(--muted); font-size: 14px; line-height: 1.35; }
     .person .lab { display: inline-block; margin-top: 6px; font-size: 12px; font-weight: 650; color: var(--accent-text); }
-    .alumni { margin-top: 64px; padding-top: 40px; border-top: 1px dashed var(--line-strong); }
-    .alumni h3 { font-size: 24px; margin-bottom: 6px; }
-    .alumni > p { margin: 0 0 24px; color: var(--ink-2); }
-    .alumni .avatar { background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line-strong); }
+    .alumni-view .avatar { background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line-strong); }
 
     /* ================= Publications ================= */
     .featured {
@@ -497,7 +494,7 @@
     /* ================= Footer ================= */
     footer { background: var(--surface); border-top: 1px solid var(--line); padding: 56px 0 40px; }
     .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
-    .foot-logo { background: #fff; border-radius: 16px; padding: 12px 18px; border: 1px solid var(--line); width: min(360px, 100%); }
+    .foot-logo { width: min(360px, 100%); height: auto; }
     .foot-grid p { color: var(--muted); font-size: 15px; margin: 16px 0 0; max-width: 44ch; }
     .foot-grid h3 { font-size: 15px; margin-bottom: 14px; color: var(--ink); }
     .foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15px; }
@@ -538,7 +535,16 @@
     .band .pager span { color: var(--band-muted); }
 
     /* ================= Explore bento ================= */
-    .explore { padding: 72px 0 96px; }
+    .explore { padding: 0 0 96px; }
+    .explore-banner {
+      width: 100%;
+      margin: 0 0 40px;
+    }
+    .explore-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
     .explore-title { font-size: clamp(28px, 3.2vw, 40px); font-weight: 800; font-variation-settings: "wdth" 112; margin-bottom: 28px; }
     .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(200px, auto); gap: 16px; }
     .tile {
@@ -686,6 +692,7 @@
         <a href="#mission" role="tab">Mission</a>
         <a href="#about" role="tab">DataHub</a>
         <a href="#team" role="tab">Team</a>
+        <a href="#alumni" role="tab">Alumni</a>
         <a href="#publications" role="tab">Publications</a>
         <a href="#software" role="tab">Software</a>
         <a href="#presentations" role="tab">Talks</a>
@@ -770,6 +777,9 @@
 
     <!-- ================= EXPLORE (bento) ================= -->
     <section class="explore" aria-labelledby="explore-title">
+      <div class="explore-banner">
+        <img src="assets/ROVI_logo_v7.web.png" alt="ROVI, Rapid Operational Validation Initiative" width="1907" height="822">
+      </div>
       <div class="wrap">
         <h2 id="explore-title" class="explore-title">Explore ROVI</h2>
         <div class="bento">
@@ -957,12 +967,18 @@
         </div>
         <div class="filters" role="group" aria-label="Filter team by organization" id="teamFilters"></div>
         <div class="team-grid" id="teamGrid" aria-live="polite"></div>
+      </div>
+    </section>
 
-        <div class="alumni" id="alumni">
-          <h3>Alumni</h3>
-          <p>Former ROVI researchers and program contributors.</p>
-          <div class="team-grid" id="alumniGrid"></div>
+    <!-- ================= ALUMNI ================= -->
+    <section class="view section alumni-view" id="alumni" data-view="alumni" role="tabpanel" aria-labelledby="alumni-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="kicker">Alumni</span>
+          <h2 id="alumni-title" class="display">Former ROVI researchers</h2>
+          <p>Program contributors who previously served on the ROVI team. Names link to profile pages where available.</p>
         </div>
+        <div class="team-grid" id="alumniGrid"></div>
       </div>
     </section>
 
@@ -1443,7 +1459,7 @@
     const views = Array.from(document.querySelectorAll('.view'));
     const order = tabs.map((t) => t.getAttribute('href').slice(1));
     const label = (id) => tabs[order.indexOf(id)].textContent.trim();
-    const ALIAS = { top: 'home', partners: 'home', alumni: 'team', 'resources-tools': 'links' };
+    const ALIAS = { top: 'home', partners: 'home', 'resources-tools': 'links' };
     let currentView = null;
 
     // Breadcrumb + previous/next pager on every inner view
