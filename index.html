@@ -282,24 +282,31 @@
     .step:nth-of-type(3) .step-track::after { animation-delay: 2.4s; }
     @keyframes flow { 0% { left: -40%; } 33%, 100% { left: 100%; } }
 
-    /* ================= DataHub ================= */
+    /* ================= DataHub band ================= */
+    .band { background: var(--band); color: var(--band-ink); position: relative; overflow: hidden; }
+    .band .section-head p { color: var(--band-muted); }
+    .band .kicker { color: #ec82a8; }
+    .band::before {
+      content: ""; position: absolute; width: 700px; height: 700px; right: -200px; top: -260px;
+      background: radial-gradient(circle, rgba(93,147,189,.25), transparent 65%);
+    }
     .hub-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; position: relative; }
     .hub-diagram { width: 100%; height: auto; }
-    .hub-diagram .node rect { fill: var(--surface); stroke: var(--line-strong); }
-    .hub-diagram .node text { fill: var(--ink); font-size: 13px; font-family: inherit; font-weight: 600; }
-    .hub-diagram .node .sub { fill: var(--muted); font-size: 11px; font-weight: 400; }
+    .hub-diagram .node rect { fill: rgba(255,255,255,.05); stroke: rgba(255,255,255,.16); }
+    .hub-diagram .node text { fill: #f2eef6; font-size: 13px; font-family: inherit; font-weight: 600; }
+    .hub-diagram .node .sub { fill: #a69db3; font-size: 11px; font-weight: 400; }
     .hub-diagram .hub rect { fill: url(#hubGrad); stroke: none; }
     .hub-diagram .hub text { fill: #fff; font-weight: 800; font-size: 18px; }
     .hub-diagram .hub .sub { fill: rgba(255,255,255,.85); font-size: 12px; font-weight: 500; }
-    .hub-diagram .wire { fill: none; stroke: var(--line-strong); stroke-width: 1.5; }
+    .hub-diagram .wire { fill: none; stroke: rgba(255,255,255,.18); stroke-width: 1.5; }
     .hub-diagram .pulse { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 14 400; animation: pulse 3.2s linear infinite; }
     @keyframes pulse { from { stroke-dashoffset: 414; } to { stroke-dashoffset: 0; } }
     .caps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-    .caps li { padding: 20px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 40px 1fr; gap: 16px; }
-    .caps li:last-child { border-bottom: 1px solid var(--line); }
-    .caps svg { width: 26px; height: 26px; color: var(--accent-text); margin-top: 2px; }
+    .caps li { padding: 20px 0; border-top: 1px solid rgba(255,255,255,.12); display: grid; grid-template-columns: 40px 1fr; gap: 16px; }
+    .caps li:last-child { border-bottom: 1px solid rgba(255,255,255,.12); }
+    .caps svg { width: 26px; height: 26px; color: #ec82a8; margin-top: 2px; }
     .caps h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-    .caps p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+    .caps p { margin: 0; color: var(--band-muted); font-size: 15.5px; }
 
     /* ================= Team ================= */
     .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
@@ -508,6 +515,7 @@
     .page-hero-crumb { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-bottom: 28px; }
     .page-hero-crumb a { color: var(--muted); }
     .page-hero-crumb svg { width: 14px; height: 14px; }
+    .band .page-hero-crumb, .band .page-hero-crumb a { color: var(--band-muted); }
 
     .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 72px; }
     .pager a {
@@ -522,6 +530,8 @@
     .pager .next { text-align: right; grid-column: 2; }
     .pager .next b { justify-content: flex-end; }
     .pager .prev b svg { transform: rotate(180deg); }
+    .band .pager a { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.14); color: var(--band-ink); }
+    .band .pager span { color: var(--band-muted); }
 
     /* ================= Page banner ================= */
     .page-banner {
@@ -711,7 +721,7 @@
    <div class="view" id="home" data-view="home" role="tabpanel" aria-label="Overview">
     <div class="wrap page-banner">
       <img src="assets/ROVI_logo_v9.web.png" alt="ROVI, Rapid Operational Validation Initiative" width="3309" height="1663">
-      <p>The <a href="https://www.energy.gov/oe/rapid-operational-validation-initiative-rovi" target="_blank" rel="noopener">Rapid Operational Validation Initiative (ROVI)</a> by the U.S. Department of Energy (DOE) aims to accelerate the commercial deployment and reduce the time-to-market for emerging long-duration energy storage (LDES) technologies, such as flow systems and lithium-ion batteries. [<a href="https://www.energy.gov/oe/rapid-operational-validation-initiative-rovi" target="_blank" rel="noopener">1</a>, <a href="https://www.energy.gov/sites/default/files/2023-08/ROVI%20Overview_0.pdf" target="_blank" rel="noopener">2</a>]</p>
+      <p>The <a href="https://www.energy.gov/oe/rapid-operational-validation-initiative-rovi" target="_blank" rel="noopener">Rapid Operational Validation Initiative (ROVI)</a> by the U.S. Department of Energy (DOE) aims to accelerate commercial deployments and reduce the time from lab-to-market for emerging energy storage technologies. [<a href="https://www.energy.gov/oe/rapid-operational-validation-initiative-rovi" target="_blank" rel="noopener">1</a>, <a href="https://www.energy.gov/sites/default/files/2023-08/ROVI%20Overview_0.pdf" target="_blank" rel="noopener">2</a>]</p>
       <p><strong>OBJECTIVE:</strong> Develop new accelerated testing methodologies, AI/ML based analysis tools &amp; validation methods to predict 15+ years of investment-grade performance with &lt; 1-year of data.</p>
     </div>
     <!-- ================= HERO ================= -->
@@ -804,7 +814,7 @@
           </a>
           <a class="tile" href="#publications">
             <span class="tile-label">Publications</span>
-            <b class="tile-num">12</b>
+            <b class="tile-num">23</b>
             <p>Papers, reports, datasets and software records since 2021.</p>
             <span class="tile-go">Browse <svg><use href="#i-arrow"/></svg></span>
           </a>
@@ -895,7 +905,7 @@
     </section>
 
     <!-- ================= DATAHUB ================= -->
-    <section class="view section" id="about" data-view="about" role="tabpanel" aria-labelledby="hub-title">
+    <section class="view section band" id="about" data-view="about" role="tabpanel" aria-labelledby="hub-title">
       <div class="wrap">
         <div class="section-head reveal">
           <span class="kicker">DataHub development</span>
@@ -1012,8 +1022,59 @@
         </article>
 
         <div class="pubs">
+          <div class="pub-year">2026</div>
+          <ul class="pub-list">
+            <li>
+              <span class="pub-title">From cell to system: accelerated HPC simulations of BESS aging under frequency regulation and arbitrage use cases</span>
+              <span class="pub-meta">Surya Mitra Ayalasomayajula, Michael Starke, Srikanth Allu. <em>IEEE EESAT</em> (2026). Best Paper Award.</span>
+              <span class="pub-links"><a href="https://doi.org/10.1109/EESAT65054.2026.11404102" target="_blank" rel="noopener">doi:10.1109/EESAT65054.2026.11404102</a></span>
+            </li>
+            <li>
+              <span class="pub-title">QUALIS: knowledge guided operator learning for hierarchical battery energy storage systems</span>
+              <span class="pub-meta">Ramakrishnan Kannan, Anika Tabassum, Surya Mitra Ayalasomayajula, Joshua Grant, Michael Starke, Srikanth Allu. <em>IEEE International Conference on Big Data</em> (2026).</span>
+            </li>
+            <li>
+              <span class="pub-title">Scalable distributed training of Fourier neural operators for battery energy storage system health prediction</span>
+              <span class="pub-meta">Jong Youl Choi, Ramakrishnan Kannan, Chih-Hsuan Hung, Anika Tabassum, Srikanth Allu. <em>IEEE HiPC</em> (2026).</span>
+            </li>
+          </ul>
+
+          <div class="pub-year">2025</div>
+          <ul class="pub-list">
+            <li>
+              <span class="pub-title">Hierarchical real-time battery state-of-health and state-of-charge estimator</span>
+              <span class="pub-meta">Kandler Smith, Shuofeng Zhao, Corey Randall, Juan Sun, Shivanshu Shekhar. <em>IEEE ECCE</em> (2025).</span>
+              <span class="pub-links"><a href="https://doi.org/10.1109/ECCE58356.2025.11259931" target="_blank" rel="noopener">doi:10.1109/ECCE58356.2025.11259931</a></span>
+            </li>
+            <li>
+              <span class="pub-title">A hybrid numerical and machine learning framework for evaluating the performance of a 780 cm² aqueous organic redox flow battery</span>
+              <span class="pub-meta">Yunxiang Chen, Chao Zeng, Yucheng Fu, Jie Bao, Peiyuan Gao, et al. <em>Journal of Power Sources</em> 635, 236470 (2025).</span>
+              <span class="pub-links"><a href="https://doi.org/10.1016/j.jpowsour.2025.236470" target="_blank" rel="noopener">doi:10.1016/j.jpowsour.2025.236470</a></span>
+            </li>
+            <li>
+              <span class="pub-title">Monitoring the long-term performance of organic redox flow battery by a distribution of relaxation time analysis</span>
+              <span class="pub-meta">Chao Zeng, Soowhan Kim, Litao Yan, Jie Bao, Yucheng Fu, et al. <em>Energy Storage Materials</em> 82, 104564 (2025).</span>
+              <span class="pub-links"><a href="https://doi.org/10.1016/j.ensm.2025.104564" target="_blank" rel="noopener">doi:10.1016/j.ensm.2025.104564</a></span>
+            </li>
+            <li>
+              <span class="pub-title">Computationally efficient models for aqueous organic redox flow batteries</span>
+              <span class="pub-meta">Jie Bao, Amanda Howard, Ayoub El Bendali, Yunxiang Chen, Yucheng Fu, et al. <em>Journal of Energy Storage</em> 134, 118134 (2025).</span>
+              <span class="pub-links"><a href="https://doi.org/10.1016/j.est.2025.118134" target="_blank" rel="noopener">doi:10.1016/j.est.2025.118134</a></span>
+            </li>
+          </ul>
+
           <div class="pub-year">2024</div>
           <ul class="pub-list">
+            <li>
+              <span class="pub-title">Toward a foundation model for cross-chemistry lithium-ion battery prognostics</span>
+              <span class="pub-meta">Vignesh Sampath, Susan J. Babinec, Noah H. Paulson. SSRN preprint; accepted at Cell Press (2025).</span>
+              <span class="pub-links"><a href="https://doi.org/10.2139/ssrn.7119305" target="_blank" rel="noopener">doi:10.2139/ssrn.7119305</a></span>
+            </li>
+            <li>
+              <span class="pub-title">Probabilistic machine learning for battery health diagnostics and prognostics: review and perspectives</span>
+              <span class="pub-meta">A. Thelen, X. Huan, N. Paulson, S. Onori, Z. Hu, C. Hu. <em>npj Materials Sustainability</em> 2, 14 (2024).</span>
+              <span class="pub-links"><a href="https://doi.org/10.1038/s44296-024-00011-1" target="_blank" rel="noopener">doi:10.1038/s44296-024-00011-1</a></span>
+            </li>
             <li>
               <span class="pub-title">thevenin: Equivalent circuit models in Python [SWR-24-132]</span>
               <span class="pub-meta">C. R. Randall. DOE CODE (2024).</span>
@@ -1027,6 +1088,11 @@
               <span class="pub-title">Lithium-ion ROVI Requirements Overview</span>
               <span class="pub-meta">U.S. Department of Energy, Office of Electricity (2023).</span>
               <span class="pub-links"><span class="pill">Report</span><a href="https://cms.doe.gov/sites/default/files/2023-10/Lithium-ion_ROVI_Requirements_Overview_508.pdf" target="_blank" rel="noopener">PDF</a></span>
+            </li>
+            <li>
+              <span class="pub-title">Flow System ROVI Requirements Overview</span>
+              <span class="pub-meta">U.S. Department of Energy, Office of Electricity (2023).</span>
+              <span class="pub-links"><span class="pill">Report</span><a href="https://www.energy.gov/sites/default/files/2023-09/Guidance%20for%20Data%20Collection%20from%20Flow%20Systems.pdf" target="_blank" rel="noopener">PDF</a></span>
             </li>
             <li>
               <span class="pub-title">Electrical Energy Storage Data Submission Guidelines</span>
@@ -1047,6 +1113,11 @@
 
           <div class="pub-year">2022</div>
           <ul class="pub-list">
+            <li>
+              <span class="pub-title">A convolutional neural network model for battery capacity fade curve prediction using early life data</span>
+              <span class="pub-meta">Saurabh Saxena, Logan Ward, Joseph Kubal, Wenquan Lu, Susan Babinec, Noah Paulson. <em>Journal of Power Sources</em> 542, 231736 (2022).</span>
+              <span class="pub-links"><a href="https://doi.org/10.1016/j.jpowsour.2022.231736" target="_blank" rel="noopener">doi:10.1016/j.jpowsour.2022.231736</a></span>
+            </li>
             <li>
               <span class="pub-title">Feature engineering for machine learning enabled early prediction of battery lifetime</span>
               <span class="pub-meta">Noah H. Paulson, Joseph Kubal, Logan Ward, Saurabh Saxena, Wenquan Lu, Susan J. Babinec. <em>Journal of Power Sources</em> 527, 231127 (2022).</span>
