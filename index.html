@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#74406e" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,0..900;1,62..125,0..900&display=swap" rel="stylesheet" />
   <script>
     (function () {
       var t = null;
@@ -747,7 +747,7 @@
             <button class="replay" type="button" id="replay" aria-label="Replay chart animation"><svg><use href="#i-replay"/></svg>Replay</button>
           </header>
           <svg id="lifeChart" viewBox="0 0 560 330" role="img" aria-labelledby="chartDesc">
-            <desc id="chartDesc">Illustrative chart: measured capacity from the first 10 cycles of testing, and an AI model forecasting the rest of the curve with an uncertainty band, reaching the 80% end-of-life threshold near 3,100 cycles.</desc>
+            <desc id="chartDesc">Illustrative chart: measured capacity from the first 100 cycles of testing, and an AI model forecasting the rest of the curve with an uncertainty band, reaching the 80% end-of-life threshold near 3,100 cycles.</desc>
           </svg>
           <ul class="legend">
             <li><i class="l-meas"></i>Lab measurements</li>
@@ -1589,7 +1589,7 @@
     const X = (n) => m.l + (n / 4000) * (W - m.l - m.r);
     const Y = (q) => m.t + ((100 - q) / 32) * (H - m.t - m.b);
     const fade = (n) => 100 - 0.25 * Math.sqrt(n) - 0.00197 * n;   // reaches 80% near 3,100 cycles
-    const CUT = 10, EOL_N = 3100;
+    const CUT = 100, EOL_N = 3100;
     const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).appendChild(e); return e; };
 
     // grid + axes
