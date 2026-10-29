@@ -1627,7 +1627,7 @@
     // measured points (deterministic noise)
     const pts = [];
     let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-    for (let n = 0; n <= CUT; n += 1) pts.push(el('circle', { class: 'pt', cx: X(n), cy: Y(fade(n) + (rnd() - .5) * 0.9), r: 3.6 }));
+    for (let n = 0; n <= CUT; n += 10) pts.push(el('circle', { class: 'pt', cx: X(n), cy: Y(fade(n) + (rnd() - .5) * 0.9), r: 3.6 }));
 
     // EOL marker
     const mk = el('g', { class: 'marker' });
