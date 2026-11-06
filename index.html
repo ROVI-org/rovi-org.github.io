@@ -381,7 +381,7 @@
     .gh-banner svg.logo { width: 40px; height: 40px; color: var(--ink); }
     .gh-banner h3 { font-size: 18px; }
     .gh-banner p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
-    .repo-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+    .repo-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 48px; }
     .repo {
       position: relative; display: flex; flex-direction: column; padding: 26px;
       border-radius: 18px; background: var(--surface); border: 1px solid var(--line);
@@ -397,6 +397,19 @@
     .repo p { margin: 0 0 18px; color: var(--ink-2); font-size: 15.5px; flex: 1; }
     .repo .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
     .repo .links { display: flex; gap: 18px; font-weight: 650; font-size: 15px; }
+    .repo-feature {
+      display: grid; grid-template-columns: minmax(200px, 280px) 1fr; gap: 28px; align-items: center;
+      padding: 26px; border-radius: 18px; margin: 0 0 48px;
+      background: var(--surface); border: 1px solid var(--line);
+    }
+    .repo-feature-logo {
+      background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px;
+    }
+    .repo-feature-logo img { display: block; width: 100%; height: auto; }
+    .repo-feature h3 { font-size: 22px; font-family: inherit; margin: 0 0 10px; }
+    .repo-feature p { margin: 0 0 16px; color: var(--ink-2); font-size: 15.5px; }
+    .repo-feature .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .repo-feature .links { display: flex; gap: 18px; font-weight: 650; font-size: 15px; }
     .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
     table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 640px; }
     th { text-align: left; font-size: 13px; font-weight: 650; color: var(--muted); padding: 14px 18px; border-bottom: 1px solid var(--line); background: var(--surface-2); }
@@ -631,6 +644,7 @@
       .hero-grid, .mission-grid, .hub-grid, .featured { grid-template-columns: 1fr; }
       .lab-logos { grid-template-columns: repeat(3, 1fr); }
       .repo-cards, .industry-grid { grid-template-columns: 1fr 1fr; }
+      .repo-feature { grid-template-columns: 1fr; }
       .res-grid { grid-template-columns: 1fr 1fr; }
       .cta-box { grid-template-columns: 1fr; }
       .cta-actions { flex-direction: row; flex-wrap: wrap; }
@@ -744,7 +758,7 @@
           <dl class="facts">
             <div><dt>National laboratories</dt><dd data-count="6">6</dd></div>
             <div><dt>Researchers</dt><dd data-count="35">35</dd></div>
-            <div><dt>Open-source repositories</dt><dd data-count="10">10</dd></div>
+            <div><dt>Open-source repositories</dt><dd data-count="11">11</dd></div>
           </dl>
         </div>
 
@@ -820,7 +834,7 @@
           </a>
           <a class="tile" href="#software">
             <span class="tile-label">Software</span>
-            <b class="tile-num">10</b>
+            <b class="tile-num">11</b>
             <p>Open-source repositories on GitHub.</p>
             <span class="tile-go">View code <svg><use href="#i-arrow"/></svg></span>
           </a>
@@ -1167,7 +1181,7 @@
         <div class="section-head reveal">
           <span class="kicker">Software</span>
           <h2 id="sw-title" class="display">Open-source tools</h2>
-          <p>ROVI develops open-source tools for battery data handling, state-of-health estimation, and prognostics.</p>
+          <p>ROVI develops open-source tools for battery data handling, state-of-health estimation, prognostics, and flow-battery simulation.</p>
         </div>
 
         <div class="gh-banner reveal">
@@ -1210,6 +1224,21 @@
           </article>
         </div>
 
+        <article class="repo-feature reveal">
+          <div class="repo-feature-logo">
+            <img src="assets/ezbattery.png" alt="EZBattery" width="1804" height="372">
+          </div>
+          <div>
+            <h3>EZBattery</h3>
+            <p>EZBattery is an easy-to-use simulation software that predicts concentrations, potentials, and cycling performance in redox flow batteries (RFBs) and their variants. Validated against laboratory experiments for inorganic (all-vanadium), organic (DHPS–ferricyanide), hybrid (zinc–iodine), and redox-targeting (Fe–S) RFBs, it delivers high accuracy in less than 0.1 seconds per charge–discharge cycle. It supports 0D and 2D modeling, unit-cell and long-duration energy storage simulations, constant-current and time-varying-power operation, and customizable component and operating parameters.</p>
+            <div class="meta"><span class="pill">Python</span><span class="pill">BSD-2-Clause</span><span class="pill">PNNL</span></div>
+            <div class="links">
+              <a href="https://github.com/pnnl/EZBattery" target="_blank" rel="noopener">Repository</a>
+              <a href="https://doi.org/10.11578/dc.20241004.1" target="_blank" rel="noopener">DOE CODE</a>
+            </div>
+          </div>
+        </article>
+
         <h3 class="h-sub">All repositories</h3>
         <div class="table-wrap reveal">
           <table>
@@ -1218,6 +1247,7 @@
               <tr><td><a href="https://github.com/ROVI-org/rovidh" target="_blank" rel="noopener">rovidh</a></td><td>ROVI DataHub utility</td><td><span class="lang-dot"></span>Python</td><td>MIT</td></tr>
               <tr><td><a href="https://github.com/ROVI-org/auto-soh" target="_blank" rel="noopener">auto-soh</a></td><td>Fit state of health to batteries using state estimation</td><td><span class="lang-dot"></span>Python</td><td>MIT</td></tr>
               <tr><td><a href="https://github.com/ROVI-org/battery-data-toolkit" target="_blank" rel="noopener">battery-data-toolkit</a></td><td>Read and manipulate battery testing data</td><td><span class="lang-dot"></span>Python</td><td>Apache-2.0</td></tr>
+              <tr><td><a href="https://github.com/pnnl/EZBattery" target="_blank" rel="noopener">pnnl/EZBattery</a></td><td>Simulator for concentrations, potentials, and cycling in redox flow batteries</td><td><span class="lang-dot"></span>Python</td><td>BSD-2-Clause</td></tr>
               <tr><td><a href="https://github.com/ROVI-org/services-demonstration" target="_blank" rel="noopener">services-demonstration</a></td><td>Pipeline from data upload to a system health dashboard</td><td><span class="lang-dot"></span>Python</td><td>MIT</td></tr>
               <tr><td><a href="https://github.com/ROVI-org/collecting-battery-datasets" target="_blank" rel="noopener">collecting-battery-datasets</a></td><td>Download and standardize data used by ROVI modeling teams</td><td><span class="lang-dot"></span>Python</td><td>MIT</td></tr>
               <tr><td><a href="https://github.com/ROVI-org/model-to-prognosis" target="_blank" rel="noopener">model-to-prognosis</a></td><td>Example pipeline: model → synthetic data → AI → prognosis</td><td><span class="lang-dot"></span>Python</td><td>MIT</td></tr>
